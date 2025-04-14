@@ -1,78 +1,83 @@
 <template>
-  <div class="row justify-center">
-    <div class="col-4">
-      <h5>Practicas componentes</h5>
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-        <q-input
-          filled
-          :dense="false"
-          v-model="form.name"
-          label="Mi nombre completo *"
-          hint="Nombre y apellido"
-          lazy-rules
-          :rules="[
-            (val) => (val && val.length > 0) || 'Por favor ingrese su nombre',
-          ]"
-        />
-        <!-- input de email -->
-        <q-input
-          filled
-          :dense="false"
-          v-model="form.email"
-          label="Mi email *"
-          hint="Email"
-        />
-        <!-- input de password -->
-        <q-input
-          filled
-          :dense="false"
-          v-model="form.password"
-          label="Mi contraseña *"
-          hint="Contraseña"
-          :type="isPwd ? 'password' : 'text'"
-        >
-          <template v-slot:append>
-            <q-icon
-              :name="isPwd ? 'visibility_off' : 'visibility'"
-              class="cursor-pointer"
-              @click="isPwd = !isPwd"
-            />
-          </template>
-        </q-input>
+  <div>
+    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+      <q-input
+        :dense="false"
+        filled
+        v-model="form.name"
+        label="Tu nombre *"
+        hint="Nombre y apellido"
+        lazy-rules
+        :rules="[
+          (val) => (val && val.length > 0) || 'Por favor ingrese su nombre',
+        ]"
+      />
 
-        <!-- input de password confirm -->
-        <q-input
-          filled
-          :dense="false"
-          v-model="form.passwordConfirm"
-          label="Confirmar contraseña *"
-          hint="Confirmar contraseña"
-          :type="isPwd1 ? 'password' : 'text'"
-        >
-          <template v-slot:append>
-            <q-icon
-              :name="isPwd1 ? 'visibility_off' : 'visibility'"
-              class="cursor-pointer"
-              @click="isPwd1 = !isPwd1"
-            />
-          </template>
-        </q-input>
-        <div>
-          <q-btn
-            label="Guardar"
-            type="submit"
-            class="bg-primary text-white q-px-md"
+      <q-input
+        :dense="false"
+        filled
+        v-model="form.email"
+        label="Tu email *"
+        hint="Email"
+      />
+
+      <q-input
+        filled
+        :dense="false"
+        v-model="form.phone"
+        label="Tu teléfono *"
+        hint="Teléfono"
+      />
+
+      <q-input
+        :dense="false"
+        filled
+        v-model="form.password"
+        label="Tu contraseña *"
+        hint="Contraseña"
+        :type="isPwd ? 'password' : 'text'"
+      >
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd = !isPwd"
           />
-          <q-btn
-            label="Reset"
-            type="reset"
-            color="primary"
-            flat
-            class="bg-secondary text-white q-ml-md q-px-md"
+        </template>
+      </q-input>
+
+      <q-input
+        :dense="false"
+        filled
+        v-model="form.confirmPassword"
+        label="Confirmar contraseña *"
+        hint="Confirmar contraseña"
+        :type="isPwd1 ? 'password' : 'text'"
+        :rules="[
+          (val) => (val && val.length > 0) || 'Por favor ingrese su contraseña',
+          (val) => val === form.password || 'Las contraseñas no coinciden',
+        ]"
+      >
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd1 ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd1 = !isPwd1"
           />
-        </div>
-      </q-form>
-    </div>
+        </template>
+      </q-input>
+      <div>
+        <q-btn label="Submit" type="submit" color="primary" />
+        <q-btn
+          label="Reset"
+          type="reset"
+          color="primary"
+          flat
+          class="q-ml-sm"
+        />
+      </div>
+    </q-form>
+    <q-btn label="practica1" color="primary" flat to="/practice/comp1" />
   </div>
 </template>
 
@@ -80,8 +85,9 @@
 const form = ref({
   name: '',
   email: '',
+  phone: '',
   password: '',
-  passwordConfirm: '',
+  confirmPassword: '',
 });
 
 const isPwd = ref(true);
@@ -92,12 +98,7 @@ const onSubmit = () => {
 };
 
 const onReset = () => {
-  form.value = {
-    name: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-  };
+  console.log(form.value);
 };
 </script>
 
