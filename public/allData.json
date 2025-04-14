@@ -1,0 +1,364 @@
+{
+  "menuList": [
+    {
+      "icon": "home",
+      "label": "Menu",
+      "to": "/home/menu",
+      "color": "primary"
+    },
+    {
+      "icon": "book",
+      "label": "Mision",
+      "to": "/home/mision",
+      "color": "secondary"
+    },
+    {
+      "icon": "money",
+      "label": "Valores",
+      "to": "/home/valores",
+      "color": "accent"
+    },
+    {
+      "icon": "info",
+      "label": "Practicas",
+      "to": "/practice",
+      "color": "positive"
+    },
+    {
+      "icon": "store",
+      "label": "P. Venta",
+      "to": "/home/venta",
+      "color": "negative"
+    }
+  ],
+
+  "roles": [
+    {
+      "id": 1,
+      "nombre": "Administrador",
+      "menuList": [
+        {
+          "nombre": "Gestionar Usuarios",
+          "icono": "people",
+          "to": "/usuarios"
+        },
+        {
+          "nombre": "Ver Reportes Financieros",
+          "icono": "bar_chart",
+          "to": "/reportes-financieros"
+        },
+        {
+          "nombre": "Configurar Sistema",
+          "icono": "settings",
+          "to": "/configuracion"
+        },
+        {
+          "nombre": "Gestionar Menús",
+          "icono": "restaurant_menu",
+          "to": "/menus"
+        },
+        {
+          "nombre": "Gestionar Pedidos",
+          "icono": "shopping_cart",
+          "to": "/pedidos"
+        },
+        {
+          "nombre": "Gestionar Inventarios",
+          "icono": "inventory",
+          "to": "/inventarios"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Gerente de Operaciones",
+      "permisos": [
+        {
+          "nombre": "Gestionar Pedidos",
+          "icono": "shopping_cart",
+          "to": "/pedidos"
+        },
+        {
+          "nombre": "Gestionar Producción",
+          "icono": "engineering",
+          "to": "/produccion"
+        },
+        {
+          "nombre": "Ver Reportes Operativos",
+          "icono": "assessment",
+          "to": "/reportes-operativos"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Chef Ejecutivo",
+      "permisos": [
+        {
+          "nombre": "Gestionar Menús",
+          "icono": "restaurant_menu",
+          "to": "/menus"
+        },
+        { "nombre": "Gestionar Recetas", "icono": "receipt", "to": "/recetas" },
+        {
+          "nombre": "Planificar Producción",
+          "icono": "event",
+          "to": "/planificacion"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Encargado de Almacén",
+      "permisos": [
+        {
+          "nombre": "Gestionar Inventarios",
+          "icono": "inventory",
+          "to": "/inventarios"
+        },
+        {
+          "nombre": "Registrar Ingresos de Productos",
+          "icono": "input",
+          "to": "/ingresos-productos"
+        },
+        {
+          "nombre": "Registrar Salidas de Productos",
+          "icono": "output",
+          "to": "/salidas-productos"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Cajero",
+      "permisos": [
+        {
+          "nombre": "Gestionar Ventas",
+          "icono": "shopping_basket",
+          "to": "/ventas"
+        },
+        {
+          "nombre": "Emitir Facturas",
+          "icono": "receipt_long",
+          "to": "/facturas"
+        },
+        { "nombre": "Registrar Pagos", "icono": "attach_money", "to": "/pagos" }
+      ]
+    }
+  ],
+
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Juan Pérez",
+      "email": "juan@catering.com",
+      "password": "123456",
+      "phone": "123456789",
+      "rol_id": 1
+    },
+    {
+      "id": 2,
+      "nombre": "María López",
+      "email": "maria@catering.com",
+      "password": "123456",
+      "phone": "987654321",
+      "rol_id": 1
+    },
+    {
+      "id": 3,
+      "nombre": "Carlos Gómez",
+      "email": "carlos@catering.com",
+      "password": "123456",
+      "phone": "567123456",
+      "rol_id": 2
+    },
+    {
+      "id": 4,
+      "nombre": "Ana Rodríguez",
+      "email": "ana@catering.com",
+      "password": "123456",
+      "phone": "789654123",
+      "rol_id": 2
+    },
+    {
+      "id": 5,
+      "nombre": "Jorge Sánchez",
+      "email": "jorge@catering.com",
+      "password": "123456",
+      "phone": "321456789",
+      "rol_id": 2
+    },
+    {
+      "id": 6,
+      "nombre": "Luisa Martínez",
+      "email": "luisa@catering.com",
+      "password": "123456",
+      "phone": "951753852",
+      "rol_id": 3
+    },
+    {
+      "id": 7,
+      "nombre": "Pedro Ramírez",
+      "email": "pedro@catering.com",
+      "password": "123456",
+      "phone": "852963741",
+      "rol_id": 3
+    },
+    {
+      "id": 8,
+      "nombre": "Sofía Herrera",
+      "email": "sofia@catering.com",
+      "password": "123456",
+      "phone": "147852369",
+      "rol_id": 3
+    },
+    {
+      "id": 9,
+      "nombre": "Ricardo Díaz",
+      "email": "ricardo@catering.com",
+      "password": "123456",
+      "phone": "369258147",
+      "rol_id": 4
+    },
+    {
+      "id": 10,
+      "nombre": "Elena Castro",
+      "email": "elena@catering.com",
+      "password": "123456",
+      "phone": "753159852",
+      "rol_id": 4
+    },
+    {
+      "id": 11,
+      "nombre": "Gabriel Fernández",
+      "email": "gabriel@catering.com",
+      "password": "123456",
+      "phone": "456987321",
+      "rol_id": 4
+    },
+    {
+      "id": 12,
+      "nombre": "Carmen Ruiz",
+      "email": "carmen@catering.com",
+      "password": "123456",
+      "phone": "258741369",
+      "rol_id": 4
+    },
+    {
+      "id": 13,
+      "nombre": "Alberto Gutiérrez",
+      "email": "alberto@catering.com",
+      "password": "123456",
+      "phone": "159357486",
+      "rol_id": 4
+    },
+    {
+      "id": 14,
+      "nombre": "Silvia Ortiz",
+      "email": "silvia@catering.com",
+      "password": "123456",
+      "phone": "741258369",
+      "rol_id": 5
+    },
+    {
+      "id": 15,
+      "nombre": "Fernando Medina",
+      "email": "fernando@catering.com",
+      "password": "123456",
+      "phone": "369147258",
+      "rol_id": 5
+    },
+    {
+      "id": 16,
+      "nombre": "Laura Vargas",
+      "email": "laura@catering.com",
+      "password": "123456",
+      "phone": "987321654",
+      "rol_id": 5
+    },
+    {
+      "id": 17,
+      "nombre": "Esteban Paredes",
+      "email": "esteban@catering.com",
+      "password": "123456",
+      "phone": "654789321",
+      "rol_id": 5
+    },
+    {
+      "id": 18,
+      "nombre": "Natalia Ríos",
+      "email": "natalia@catering.com",
+      "password": "123456",
+      "phone": "852147963",
+      "rol_id": 5
+    },
+    {
+      "id": 19,
+      "nombre": "Héctor Castro",
+      "email": "hector@catering.com",
+      "password": "123456",
+      "phone": "951486357",
+      "rol_id": 5
+    },
+    {
+      "id": 20,
+      "nombre": "Patricia Salazar",
+      "email": "patricia@catering.com",
+      "password": "123456",
+      "phone": "321654987",
+      "rol_id": 5
+    }
+  ],
+  "noticias": [
+    {
+      "id": 1,
+      "titular": "Descubren un nuevo exoplaneta en la Vía Láctea",
+      "autor": "Dr. Alejandro Gómez",
+      "detalle": "Un equipo internacional de astrónomos ha descubierto un exoplaneta potencialmente habitable a 40 años luz de la Tierra. El planeta orbita en la zona habitable de su estrella, lo que sugiere la posibilidad de agua líquida.",
+      "imagen": "https://images.pexels.com/photos/709552/pexels-photo-709552.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "fecha_publicacion": "2023-10-05",
+      "categoria": "Ciencia",
+      "url": "https://ejemplo.com/noticia/exoplaneta-descubierto"
+    },
+    {
+      "id": 2,
+      "titular": "El arte digital revoluciona la industria creativa",
+      "autor": "María Fernández",
+      "detalle": "El auge de las herramientas digitales está transformando la forma en que los artistas crean y comparten sus obras. NFTs y plataformas online están democratizando el acceso al arte.",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeFbxqqWNsgVgga7j6MrL-OfFF-mnAl28PsQ&sl",
+      "fecha_publicacion": "2023-10-04",
+      "categoria": "Tecnología",
+      "url": "https://ejemplo.com/noticia/arte-digital"
+    },
+    {
+      "id": 3,
+      "titular": "Nueva ley de protección ambiental entra en vigor",
+      "autor": "Carlos Mendoza",
+      "detalle": "El gobierno anunció la implementación de una nueva ley que busca reducir las emisiones de carbono en un 50% para 2030. Las empresas deberán adaptarse a regulaciones más estrictas.",
+      "imagen": "https://elpregon.news/wp-content/uploads/2023/11/proteccion-ambiental.webp",
+      "fecha_publicacion": "2023-10-03",
+      "categoria": "Política",
+      "url": "https://ejemplo.com/noticia/ley-ambiental"
+    },
+    {
+      "id": 4,
+      "titular": "El turismo espacial se hace realidad",
+      "autor": "Laura Torres",
+      "detalle": "Una empresa privada anunció su primer vuelo comercial tripulado al espacio. Los pasajeros experimentarán gravedad cero y vistas impresionantes de la Tierra.",
+      "imagen": "https://www.legaltoday.com/wp-content/uploads/2020/10/turismo-espacial.jpg",
+      "fecha_publicacion": "2023-10-02",
+      "categoria": "Innovación",
+      "url": "https://ejemplo.com/noticia/turismo-espacial"
+    },
+    {
+      "id": 5,
+      "titular": "El fútbol femenino gana terreno en el mundo",
+      "autor": "Javier López",
+      "detalle": "La FIFA anunció un aumento significativo en la inversión para el fútbol femenino, con el objetivo de promover la igualdad de género en el deporte.",
+      "imagen": "https://media.cnn.com/api/v1/images/stellar/prod/cnne-1712474-220719092830-03-usa-canada-concaf.jpg?c=16x9&q=h_833,w_1480,c_fill",
+      "fecha_publicacion": "2023-10-01",
+      "categoria": "Deportes",
+      "url": "https://ejemplo.com/noticia/futbol-femenino"
+    }
+  ]
+}
