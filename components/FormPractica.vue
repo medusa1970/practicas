@@ -1,59 +1,106 @@
 <template>
   <div>
-    <h5>{{ titulo }}</h5>
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-      <q-input
-        v-for="input in form"
-        :key="input.name"
-        :dense="false"
-        filled
-        :type="input.type as any"
-        v-model="input.name"
-        :label="input.label"
-        :hint="input.hint"
-        :rules="input.rules"
-      />
-
+    <q-form class="q-gutter-md">
+      <div v-for="field in fields" :key="field.name">
+        <q-input
+          v-if="field.type !== 'toggle'"
+          v-model="model[field.name]"
+          :label="field.label"
+          :type="passwordVisibility[field.name] ? 'text' : field.type"
+          :name="field.name"
+          :rules="field.rules"
+          :filled="filled"
+          :dense="dense"
+        >
+          <template v-slot:append v-if="field.type === 'password'">
+            <q-icon
+              :name="
+                passwordVisibility[field.name] ? 'visibility_off' : 'visibility'
+              "
+              @click="togglePasswordVisibility(field.name)"
+            />
+          </template>
+        </q-input>
+        <div v-if="field.type === 'toggle'" class="row items-center">
+          <q-toggle
+            v-model="terms"
+            :dense="dense"
+            filled
+            :rules="field.rules"
+          />
+          <div class="text-caption">
+            Leer y aceptar los <a href="/home/terms">Terminos y Condiciones</a>
+          </div>
+        </div>
+      </div>
       <div>
-        <q-btn label="Submit" type="submit" color="primary" />
-        <q-btn
-          label="Reset"
-          type="reset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-        />
+        <q-btn :label="buttonLabel" type="submit" />
+        <q-btn label="Cancelar" type="button" />
       </div>
     </q-form>
+    {{ model }}
   </div>
 </template>
 
 <script setup lang="ts">
-interface FormField {
+export type InputType =
+  | 'text'
+  | 'password'
+  | 'email'
+  | 'number'
+  | 'url'
+  | 'tel'
+  | 'file'
+  | 'date'
+  | 'datetime-local'
+  | 'time'
+  | 'search'
+  | 'textarea'
+  | 'toggle'; // Define los tipos permitidos
+
+interface Field {
   name: string;
-  type: string;
   label: string;
-  hint?: string;
-  rules?: Array<(val: any) => boolean | string>; // Opcionalmente, puedes definir las reglas
+  type: InputType; // Usa el tipo específico aquí
+  rules?: any[]; // Puedes ajustar el tipo de reglas según tus necesidades
 }
 
+interface Model {
+  [key: string]: any; // Define el tipo del modelo como un objeto con claves de tipo string
+}
+
+const terms = ref(false);
+
 const props = defineProps({
-  titulo: {
+  fields: {
+    type: Array as () => Field[], // Especifica el tipo de fields
+    required: true,
+  },
+  title: {
     type: String,
     required: true,
   },
-  form: {
-    type: Array as () => FormField[], // Usa la interfaz aquí
+  buttonLabel: {
+    type: String,
     required: true,
+  },
+  filled: {
+    type: Boolean,
+    required: false,
+  },
+  dense: {
+    type: Boolean,
+    required: false,
   },
 });
 
-const isPwd = ref(true);
-const isPwd1 = ref(true);
+const model = ref<Model>({}); // Define el modelo con el tipo Model
 
-const onSubmit = () => {};
+const passwordVisibility = ref<{ [key: string]: boolean }>({}); // Define el tipo de passwordVisibility
 
-const onReset = () => {};
+function togglePasswordVisibility(fieldName: string) {
+  passwordVisibility.value[fieldName] = !passwordVisibility.value[fieldName]; // Alterna la visibilidad
+}
 </script>
 
 <style scoped></style>

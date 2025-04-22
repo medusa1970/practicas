@@ -26,8 +26,14 @@
     },
     {
       "icon": "store",
-      "label": "P. Venta",
-      "to": "/home/venta",
+      "label": "Form. TypeScript",
+      "to": "/practice/form-ts",
+      "color": "negative"
+    },
+    {
+      "icon": "logueo1",
+      "label": "Logueo",
+      "to": "/logueo",
       "color": "negative"
     }
   ],

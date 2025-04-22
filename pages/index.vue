@@ -25,12 +25,7 @@
         style="height: calc(100vh - 320px)"
       >
         <q-scroll-area style="height: calc(100vh - 320px); width: 70%">
-          <div class="bg-primary col-8">
-            <MyCards />
-            <MyCards />
-            <MyCards />
-            <MyCards />
-          </div>
+          <div class="bg-primary col-8"></div>
         </q-scroll-area>
       </div>
     </div>

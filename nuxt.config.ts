@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['nuxt-quasar-ui'],
+  modules: ['@pinia/nuxt', 'nuxt-quasar-ui'],
+  pinia: {},
   quasar: {
     // Configurable Component Defaults
     components: {
@@ -20,11 +21,18 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3001',
+      apiBase: process.env.API_BASE || 'http://localhost:3000',
     },
   },
   devServer: {
     host: '0.0.0.0', // Escucha en todas las interfaces de red
     port: 3000, // Puerto predeterminado (puedes cambiarlo si lo deseas)
   },
+  imports: {
+    dirs: ['stores'],
+  },
+  build: {
+    transpile: ['quasar'],
+  },
+  plugins: [{ src: '~/plugins/pinia-persistedstate', mode: 'client' }],
 });

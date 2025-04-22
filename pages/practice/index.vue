@@ -1,105 +1,83 @@
 <template>
   <div>
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-      <q-input
-        :dense="false"
-        filled
-        v-model="form.name"
-        label="Tu nombre *"
-        hint="Nombre y apellido"
-        lazy-rules
-        :rules="[
-          (val) => (val && val.length > 0) || 'Por favor ingrese su nombre',
-        ]"
-      />
-
-      <q-input
-        :dense="false"
-        filled
-        v-model="form.email"
-        label="Tu email *"
-        hint="Email"
-      />
-
-      <q-input
-        filled
-        :dense="false"
-        v-model="form.phone"
-        label="Tu teléfono *"
-        hint="Teléfono"
-      />
-
-      <q-input
-        :dense="false"
-        filled
-        v-model="form.password"
-        label="Tu contraseña *"
-        hint="Contraseña"
-        :type="isPwd ? 'password' : 'text'"
-      >
-        <template v-slot:append>
-          <q-icon
-            :name="isPwd ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="isPwd = !isPwd"
-          />
-        </template>
-      </q-input>
-
-      <q-input
-        :dense="false"
-        filled
-        v-model="form.confirmPassword"
-        label="Confirmar contraseña *"
-        hint="Confirmar contraseña"
-        :type="isPwd1 ? 'password' : 'text'"
-        :rules="[
-          (val) => (val && val.length > 0) || 'Por favor ingrese su contraseña',
-          (val) => val === form.password || 'Las contraseñas no coinciden',
-        ]"
-      >
-        <template v-slot:append>
-          <q-icon
-            :name="isPwd1 ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="isPwd1 = !isPwd1"
-          />
-        </template>
-      </q-input>
-      <div>
-        <q-btn label="Submit" type="submit" color="primary" />
-        <q-btn
-          label="Reset"
-          type="reset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-        />
-      </div>
-    </q-form>
-    <q-btn label="practica1" color="primary" flat to="/practice/comp1" />
+    <h5>Componente form</h5>
+    <FormPractica
+      :fields="form"
+      title="Formulario de prueba"
+      :filled="true"
+      :dense="true"
+      buttonLabel="Guardar"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-const form = ref({
-  name: '',
-  email: '',
-  phone: '',
-  password: '',
-  confirmPassword: '',
-});
+import { ref } from 'vue';
+import type { InputType } from '@/components/FormPractica.vue';
 
-const isPwd = ref(true);
-const isPwd1 = ref(true);
-
-const onSubmit = () => {
-  console.log(form.value);
-};
-
-const onReset = () => {
-  console.log(form.value);
-};
+const form = ref<
+  Array<{
+    name: string;
+    label: string;
+    type: InputType;
+    rules?: Array<(val: string) => boolean | string>;
+    filled?: boolean;
+    dense?: boolean;
+  }>
+>([
+  {
+    name: 'nombre',
+    label: 'Nombre',
+    type: 'text',
+    rules: [
+      (val: string) => !!val || 'Campo requerido',
+      (val: string) =>
+        (val.length >= 3 && val.length <= 20) ||
+        'Debe tener entre 3 y 20 caracteres',
+    ],
+  },
+  {
+    name: 'email',
+    label: 'Email',
+    type: 'email',
+    rules: [
+      (val: string) => !!val || 'Campo requerido',
+      (val: string) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val) || 'Email no válido',
+    ],
+  },
+  {
+    name: 'password',
+    label: 'Password',
+    type: 'password',
+    rules: [
+      (val: string) => !!val || 'Campo requerido',
+      (val: string) =>
+        (val.length >= 8 && val.length <= 20) ||
+        'Debe tener entre 8 y 20 caracteres',
+    ],
+  },
+  {
+    name: 'passwordConfirm',
+    label: 'Password Confirm',
+    type: 'password',
+    rules: [
+      (val: string) => !!val || 'Campo requerido',
+      (val: string) =>
+        (val.length >= 8 && val.length <= 20) ||
+        'Debe tener entre 8 y 20 caracteres',
+    ],
+  },
+  {
+    name: 'terms',
+    label: 'Acepto los términos y condiciones',
+    type: 'toggle',
+    rules: [
+      (val: string) =>
+        val === 'true' || 'Debes aceptar los términos y condiciones',
+    ],
+  },
+]);
 </script>
 
 <style scoped></style>

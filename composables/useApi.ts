@@ -31,12 +31,30 @@ export const useApi = () => {
     body: any,
     options?: FetchOptions,
   ): Promise<T> => {
-    return await $fetch(endpoint, {
+    console.log(`POST a ${endpoint}:`, body);
+
+    // Asegurarse de que los datos se envíen como JSON
+    const requestOptions = {
       ...baseOptions,
       ...options,
-      method: 'POST',
-      body,
-    });
+      method: 'POST' as const,
+      body: JSON.stringify(body),
+      headers: {
+        ...baseOptions.headers,
+        'Content-Type': 'application/json',
+      },
+    };
+
+    console.log('Opciones de solicitud:', requestOptions);
+
+    try {
+      const response = await $fetch(endpoint, requestOptions);
+      console.log(`Respuesta de ${endpoint}:`, response);
+      return response as T;
+    } catch (error) {
+      console.error(`Error en POST a ${endpoint}:`, error);
+      throw error;
+    }
   };
 
   // PUT: Actualizar recurso completo
